@@ -1,0 +1,25 @@
+{
+  "name": "apollo-server",
+  "version": "1.0.0",
+  "description": "server side application with apollo, express and graphql",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "apollo",
+    "react",
+    "graphql",
+    "express"
+  ],
+  "author": "charouf nassro",
+  "license": "MIT",
+  "dependencies": {
+    "apollo-server-express": "^2.9.3",
+    "express": "^4.17.1",
+    "graphql": "^14.5.4",
+    "mongoose": "^5.7.0",
+    "nodemon": "^1.19.2"
+  }
+}
