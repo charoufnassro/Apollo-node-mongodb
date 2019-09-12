@@ -10,9 +10,10 @@ const typeDefs = gql`
             id: ID!
             userName: String
             email: String
+            sexe: String
         }
         type Mutation {
-            addUser(userName: String!, email: String!): User
+            addUser(userName: String!, email: String!, sexe: String!): User
         }
 `
 
