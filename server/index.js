@@ -13,11 +13,17 @@ const typeDefs = gql`
             email: String
             sexe: String
         }
+        input userInput {
+            userName: String
+            email: String
+            sexe: String
+        }
         type Mutation {
             addUser(userName: String!, email: String!, sexe: String!): User
             deleteUser(id: ID!): User
-            updateUser(id: ID!, userName: String!, email: String!, sexe: String!): User
+            updateUser(id: ID!, inputUser: userInput): User
         }
+        
 `
 
 const resolvers = {
@@ -33,6 +39,7 @@ const resolvers = {
     Mutation: {
         addUser: async (_, args) => {
             try {
+                console.log("added")
                 let response = await User.create(args);
                 return response;
             } catch(e) {
@@ -41,20 +48,33 @@ const resolvers = {
         },
         deleteUser: async (_,user) => {
             try {
+                console.log("deleted")
                 let response = await User.findByIdAndRemove(user.id);
                 return response;
             } catch(e) {
                 return e.message;
             }
         },
-        updateUser: async (_,args) => {
+        updateUser: async (_, {id,inputUser}) => {
             try {
-                consolr.log("args:", args)
-                let response  = await User.findByIdAndUpdate(args);
+                
+                let _id= id
+                let _inputUser={userName: inputUser.userName, email: inputUser.email, sexe: inputUser.sexe}
+                console.log("update", _id)
+                let response = await User.findOneAndUpdate({_id}, _inputUser, { new: true});
                 return response;
             } catch(e) {
                 return e.message;
             }
+            // (root, {
+            //     _id,
+            //     input
+            // }) {
+            //     return await Product.findOneAndUpdate({
+            //         _id
+            //     }, input, {
+            //         new: true
+            //     })
         }
     }
 }

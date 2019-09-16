@@ -1,6 +1,7 @@
 import React from 'react'
 import { Table, Divider } from 'antd'
 import DeleteUser from './DeleteUser'
+import DrawerUpdateUser from './DrawerUpdateUser'
 
 const columns = [
     {
@@ -29,7 +30,7 @@ const columns = [
         key: 'action',
         render: (text, record) => (
             <span>
-                <a>Edit</a>
+                <DrawerUpdateUser data={record} />
                 <Divider type="vertical" />
                 <DeleteUser data={record} />
             </span>

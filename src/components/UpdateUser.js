@@ -1,9 +1,7 @@
 import React from 'react'
 import { useMutation } from '@apollo/react-hooks';
 import { gql } from "apollo-boost";
-import { Button, Input, Select, Form, Icon } from 'antd'
-
-const { Option } = Select
+import { Button } from 'antd'
 
 const ADD_USER = gql`
   mutation AddUser($userName: String!, $email: String!, $sexe: String!) {
@@ -15,18 +13,31 @@ const ADD_USER = gql`
   }
 `;
 
+const UPDATE_USER = gql`
+    mutation UpdateUser($id: ID!, $userName: String!, $email: String!, $sexe: String!){
+    updateUser(
+            id: $id,
+            inputUser:{userName: $userName, email: $email,sexe: $sexe}
+                ){
+                    userName
+                    email
+                    sexe
+                }
+    }
+`
+
 const GET_USERS = gql`
   {
     getUsers{id userName email sexe}
   }
 `;
 
-export default function AddUser(props) {
+export default function UpdateUser(props) {
     let input;
     let inputEmail;
     let inputSexe;
-    const [addUser, { data }] = useMutation(
-      ADD_USER,
+    const [updateUser, { data }] = useMutation(
+      UPDATE_USER,
       // {
       //   update(cache, { data: { addUser } }) {
       //     const data = cache.readQuery({ query: GET_USERS });
@@ -40,43 +51,33 @@ export default function AddUser(props) {
       // }
       { refetchQueries: [{query: GET_USERS}] }
       );
-      
-      function hasErrors(fieldsError) {
-        return Object.keys(fieldsError).some(field => fieldsError[field]);
-      }
+
 
     return (
         <div>
-          <Form layout="vertical" onSubmit={e => {
-            e.preventDefault();
-            console.log(e.username.target.value)
-            addUser({ variables: { userName: e.target.value, email: e.target.value, sexe: e.target.value } });
-          }} >
-            <Form.Item>
-              <Input name='username' placeholder="Enter your username" prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />} onChange={(e) => console.log(e.username)} />
-            </Form.Item>
-            <Form.Item>
-              <Input name='email' placeholder="Enter your email" prefix={<Icon type="mail" style={{ color: 'rgba(0,0,0,.25)' }} />}/>
-            </Form.Item>
-            <Form.Item>
-              <Input placeholder="Enter your sexe" prefix={<Icon type="woman" style={{ color: 'rgba(0,0,0,.25)' }} />}/>
-            </Form.Item>
-          </Form>
-          
-          
         <form
+          onSubmit={e => {
+            e.preventDefault();
+            updateUser({ variables: {id: props.data.data.id, userName: "updated", email: "updated", sexe: "updated"} });
+            input.value = '';
+            inputEmail.value = '';
+            inputSexe.value= "";
+          }}
         >
           <input ref={node => {
               input = node;
             }}
+            // value={props.data.data.userName}
           />
           <input ref={node => {
               inputEmail = node;
             }}
+            // value={props.data.data.email}
           />
           <input ref={node => {
               inputSexe = node;
             }}
+            // value={props.data.data.sexe}
           />
           <div
               style={{
@@ -99,8 +100,8 @@ export default function AddUser(props) {
               >
               Back
               </Button>
-              <Button onClick={props.closeDrawer} type="primary" htmlType='submit' icon='user-add'>
-              Add 
+              <Button onClick={props.closeDrawer} type="primary" htmlType='submit'>
+              Update
               </Button>
           </div>
         </form>
