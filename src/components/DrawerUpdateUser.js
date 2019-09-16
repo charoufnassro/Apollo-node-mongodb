@@ -22,10 +22,9 @@ class DrawerUpdateUser extends Component {
     render(){
 
             return (
-                    <div>
+                    <>
                         
                         <a onClick={this.showDrawer}>Edit</a>
-                        
                         <Drawer
                         title="Add New User"
                         width={520}
@@ -38,7 +37,7 @@ class DrawerUpdateUser extends Component {
                             
                             
                         </Drawer>
-                    </div>
+                    </>
                 )        
     }
     

@@ -21,6 +21,7 @@ const GET_USERS = gql`
   }
 `;
 
+
 export default function AddUser(props) {
     let input;
     let inputEmail;
@@ -40,70 +41,81 @@ export default function AddUser(props) {
       // }
       { refetchQueries: [{query: GET_USERS}] }
       );
-      
-      function hasErrors(fieldsError) {
-        return Object.keys(fieldsError).some(field => fieldsError[field]);
-      }
 
     return (
         <div>
-          <Form layout="vertical" onSubmit={e => {
+           <Form layout="vertical" onSubmit={e => {
             e.preventDefault();
-            console.log(e.username.target.value)
-            addUser({ variables: { userName: e.target.value, email: e.target.value, sexe: e.target.value } });
+            console.log(e.target.elements)
+            addUser({ variables: {userName: e.target.elements.userName.value, email: e.target.elements.email.value, sexe: e.target.elements.sexe.value } });
+            e.target.elements.userName.value = '';
+            e.target.elements.email.value = '';
+            e.target.elements.sexe.value= '';
+          }}>
+            <Form.Item >
+              
+                <Input
+                  name="userName"
+                  prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
+                  placeholder="Enter your username"
+                />
+            </Form.Item>
+            <Form.Item >
+              
+                <Input
+                  name="email"
+                  prefix={<Icon type="mail" style={{ color: 'rgba(0,0,0,.25)' }} />}
+                  placeholder="Enter your email"
+                />
+            </Form.Item>
+            <Form.Item >
+              
+                <Input
+                name="sexe"
+                  prefix={<Icon type="team" style={{ color: 'rgba(0,0,0,.25)' }} />}
+                  placeholder="Enter your sexe"
+                />
+            </Form.Item>
+          {/* <Form layout="vertical" onSubmit={e => {
+            e.preventDefault();
+            console.log(e.target.elements.username.value)
+            addUser({ variables: { userName: e.target.elements.username.value, email: e.target.elements.email.value, sexe: e.target.elements.sexe.value } });
           }} >
             <Form.Item>
-              <Input name='username' placeholder="Enter your username" prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />} onChange={(e) => console.log(e.username)} />
+              <Input name='username' placeholder="Enter your username" prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />} />
             </Form.Item>
             <Form.Item>
               <Input name='email' placeholder="Enter your email" prefix={<Icon type="mail" style={{ color: 'rgba(0,0,0,.25)' }} />}/>
             </Form.Item>
             <Form.Item>
-              <Input placeholder="Enter your sexe" prefix={<Icon type="woman" style={{ color: 'rgba(0,0,0,.25)' }} />}/>
-            </Form.Item>
+              <Input name='sexe' placeholder="Enter your sexe" prefix={<Icon type="woman" style={{ color: 'rgba(0,0,0,.25)' }} />}/>
+            </Form.Item> */}
+              <div
+                  style={{
+                    position: 'absolute',
+                    bottom: 0,
+                    width: '100%',
+                    borderTop: '1px solid #e8e8e8',
+                    padding: '10px 16px',
+                    textAlign: 'right',
+                    left: 0,
+                    background: '#fff',
+                    borderRadius: '0 0 4px 4px',
+                    }}
+                >
+                    <Button
+                    style={{
+                        marginRight: 8,
+                    }}
+                    onClick={props.closeDrawer}
+                    >
+                    Back
+                    </Button>
+                    <Button onClick={props.closeDrawer} type="primary" htmlType='submit' icon='user-add'>
+                    Add 
+                    </Button>
+              </div>
           </Form>
-          
-          
-        <form
-        >
-          <input ref={node => {
-              input = node;
-            }}
-          />
-          <input ref={node => {
-              inputEmail = node;
-            }}
-          />
-          <input ref={node => {
-              inputSexe = node;
-            }}
-          />
-          <div
-              style={{
-              position: 'absolute',
-              bottom: 0,
-              width: '100%',
-              borderTop: '1px solid #e8e8e8',
-              padding: '10px 16px',
-              textAlign: 'right',
-              left: 0,
-              background: '#fff',
-              borderRadius: '0 0 4px 4px',
-              }}
-          >
-              <Button
-              style={{
-                  marginRight: 8,
-              }}
-              onClick={props.closeDrawer}
-              >
-              Back
-              </Button>
-              <Button onClick={props.closeDrawer} type="primary" htmlType='submit' icon='user-add'>
-              Add 
-              </Button>
-          </div>
-        </form>
       </div>
     )
 }
