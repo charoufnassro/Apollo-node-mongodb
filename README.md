@@ -1,68 +1,95 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# User Management System With Apollo Graphql React  MongoDB
+![enter image description here](https://miro.medium.com/max/2600/1*pD7ShcZ7YHIMXe2mgiFzbg.png)
+[![GitHub](https://img.shields.io/github/license/simpletut/Universal-React-Apollo-Registration.svg)](https://github.com/charoufnassro/Apollo-node-mongodb/master/LICENSE)
 
-## Available Scripts
+### [Online Demo](https://apollo-node-mongodb.herokuapp.com)
 
-In the project directory, you can run:
+As the Demo is hosted on a free Heroku account, the servers its hosted on enter ‘sleep mode’ when not in use. If you notice a delay, please allow a few seconds for the servers to wake up.
 
-### `npm start`
+### System includes:
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+Account Add Update Edit, Delete User Profile
 
-### `npm test`
+Browse Users
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+The User Manager System is designed by <strong>Antd</strong> 
 
-### `npm run build`
+### Tech Stack:
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+* NodeJS
+* React 
+* Server-side Rendered
+* Apollo Client
+* GraphQL
+* MongoDB
+* Antd
+### Screenshot
+![image](https://raw.githubusercontent.com/charoufnassro/Apollo-node-mongodb/master/src/assets/img/ums.PNG)
+## Getting Started
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+This repository contains the source code for User Registration System. This documentation will cover the installation on your localhost machine, project architecture and working with the app in general.
+## Software 
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Before proceeding, please ensure you have the following software installed on your computer.
 
-### `npm run eject`
+* Node
+* Yarn (optional but recommended)
+* Git command line tools
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### Useful links
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+* Download Git CLT - Windows: https://git-scm.com/download/windows Mac: https://git-scm.com/download/mac
+* Download Node - https://nodejs.org/en/
+* Download Yarn CLT - https://yarnpkg.com/lang/en/docs/install/
+* Download VSCode - https://code.visualstudio.com/
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## Installation
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+Please fork a copy of this repository. Forking a repository allows you to freely experiment with changes without affecting the original project. Alternatively download or clone the master branch.
 
-## Learn More
+### Download & Install Dependencies on your machine 
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+1)	Clone the repo to your machine 
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```
+git clone <CloneURL>
+```
 
-### Code Splitting
+2)	Within terminal or cmd ensure you have navigated inside the cloned directory and install the dependencies
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+```
+cd <new-dir> 
+yarn install OR npm install
+```
+## Set-up MongoDB (Setting up your database)
 
-### Analyzing the Bundle Size
+This web app uses MongoDB to save, query and process data, The database will be created automatiquely.
+Please ensure that you are connected in MongoDB.
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+### Run client side npm start
 
-### Making a Progressive Web App
+Before we can lunch the project, we need to run a npm start client server in folder **src**
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+```
+npm start 
+```
 
-### Advanced Configuration
+### Run server side npm start
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
+Now you can run server side with run npm start in folder server
 
-### Deployment
+```
+npm start 
+```
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
+Your project is now running on: http://localhost:3000
+Your server on : http://localhost:4000/graphql
 
-### `npm run build` fails to minify
+## Acknowledgements
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+This software was developed by Charouf Nasser Eddine.
+
+## License
+
+The User Registration System is open source software licensed as MIT.

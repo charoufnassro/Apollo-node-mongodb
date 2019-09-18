@@ -18,28 +18,6 @@ const GET_USERS = gql`
   }
 `;
 
-// const USER_INSERTED_SUBSCRIPTION = gql`
-//   subscription userInserted{
-//     userInserted{
-//       id
-//       userName
-//       email
-//       sexe
-//     }
-//   }
-// `
-
-// const USER_DELETED_SUBSCRIPTION = gql`
-//   subscription userDeleted{
-//     userDeleted{
-//       id
-//       userName
-//       email
-//       sexe
-//     }
-//   }
-// `
-
 
 
 function GetUsers() {
@@ -66,39 +44,5 @@ function GetUsers() {
   )
 }
 
-// function NotificationInserted() {
-//   const { data, loading, error } = useSubscription(
-//     USER_INSERTED_SUBSCRIPTION,
-//   );
-//   return <h4>User inserted: {!loading && data}</h4>;
-// }
-// function NotificationDeleted() {
-//   const { data, loading, error } = useSubscription(
-//     USER_DELETED_SUBSCRIPTION,
-//   );
-//   return <h4>User deleted: {!loading && data}</h4>;
-// }
-
-
-// function App() {
-//   return (
-//     <div className="App">
-//       <header className="App-header">
-//         <img src={logo} className="App-logo" alt="logo" />
-//         <p>
-//           Edit <code>src/App.js</code> and save to reload.
-//         </p>
-//         <a
-//           className="App-link"
-//           href="https://reactjs.org"
-//           target="_blank"
-//           rel="noopener noreferrer"
-//         >
-//           Learn React
-//         </a>
-//       </header>
-//     </div>
-//   );
-// }
 
 export default GetUsers;
