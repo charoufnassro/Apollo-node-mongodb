@@ -24,6 +24,8 @@ const wsLink = new WebSocketLink({
   }
 });
 
+import 'antd/dist/antd.css'
+
 const cache = new InMemoryCache();
 const httpLink = new HttpLink({
   uri: 'http://localhost:4000/graphql',

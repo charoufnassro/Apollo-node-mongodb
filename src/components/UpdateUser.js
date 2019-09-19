@@ -1,9 +1,7 @@
 import React from 'react'
 import { useMutation } from '@apollo/react-hooks';
 import { gql } from "apollo-boost";
-import { Button, Input, Select, Form, Icon } from 'antd'
-
-const { Option } = Select
+import { Button, Form, Input, Icon } from 'antd'
 
 const ADD_USER = gql`
   mutation AddUser($userName: String!, $email: String!, $sexe: String!) {
@@ -15,19 +13,31 @@ const ADD_USER = gql`
   }
 `;
 
+const UPDATE_USER = gql`
+    mutation UpdateUser($id: ID!, $userName: String!, $email: String!, $sexe: String!){
+    updateUser(
+            id: $id,
+            inputUser:{userName: $userName, email: $email,sexe: $sexe}
+                ){
+                    userName
+                    email
+                    sexe
+                }
+    }
+`
+
 const GET_USERS = gql`
   {
     getUsers{id userName email sexe}
   }
 `;
 
-
-export default function AddUser(props) {
+export default function UpdateUser(props) {
     let input;
     let inputEmail;
     let inputSexe;
-    const [addUser, { data }] = useMutation(
-      ADD_USER,
+    const [updateUser, { data }] = useMutation(
+      UPDATE_USER,
       // {
       //   update(cache, { data: { addUser } }) {
       //     const data = cache.readQuery({ query: GET_USERS });
@@ -42,22 +52,19 @@ export default function AddUser(props) {
       { refetchQueries: [{query: GET_USERS}] }
       );
 
+
     return (
         <div>
-           <Form layout="vertical" onSubmit={e => {
+          <Form layout="vertical" onSubmit={e => {
             e.preventDefault();
-            console.log(e.target.elements)
-            addUser({ variables: {userName: e.target.elements.userName.value, email: e.target.elements.email.value, sexe: e.target.elements.sexe.value } });
-            e.target.elements.userName.value = '';
-            e.target.elements.email.value = '';
-            e.target.elements.sexe.value= '';
-          }}>
+            updateUser({ variables: {id: props.data.data.id, userName: e.target.elements.userName.value, email: e.target.elements.email.value, sexe: e.target.elements.sexe.value}})}}>
             <Form.Item >
               
                 <Input
                   name="userName"
                   prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
                   placeholder="Enter your username"
+                  defaultValue={props.data.data.userName}
                 />
             </Form.Item>
             <Form.Item >
@@ -66,6 +73,7 @@ export default function AddUser(props) {
                   name="email"
                   prefix={<Icon type="mail" style={{ color: 'rgba(0,0,0,.25)' }} />}
                   placeholder="Enter your email"
+                  defaultValue={props.data.data.email}
                 />
             </Form.Item>
             <Form.Item >
@@ -74,22 +82,10 @@ export default function AddUser(props) {
                 name="sexe"
                   prefix={<Icon type="team" style={{ color: 'rgba(0,0,0,.25)' }} />}
                   placeholder="Enter your sexe"
+                  defaultValue={props.data.data.sexe}
                 />
             </Form.Item>
-          {/* <Form layout="vertical" onSubmit={e => {
-            e.preventDefault();
-            console.log(e.target.elements.username.value)
-            addUser({ variables: { userName: e.target.elements.username.value, email: e.target.elements.email.value, sexe: e.target.elements.sexe.value } });
-          }} >
-            <Form.Item>
-              <Input name='username' placeholder="Enter your username" prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />} />
-            </Form.Item>
-            <Form.Item>
-              <Input name='email' placeholder="Enter your email" prefix={<Icon type="mail" style={{ color: 'rgba(0,0,0,.25)' }} />}/>
-            </Form.Item>
-            <Form.Item>
-              <Input name='sexe' placeholder="Enter your sexe" prefix={<Icon type="woman" style={{ color: 'rgba(0,0,0,.25)' }} />}/>
-            </Form.Item> */}
+         
               <div
                   style={{
                     position: 'absolute',
@@ -112,7 +108,7 @@ export default function AddUser(props) {
                     Back
                     </Button>
                     <Button onClick={props.closeDrawer} type="primary" htmlType='submit' icon='user-add'>
-                    Add 
+                    Update
                     </Button>
               </div>
           </Form>
