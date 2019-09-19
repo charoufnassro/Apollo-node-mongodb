@@ -4,21 +4,11 @@ import React from 'react';
 
 import { Row, Col,  Layout} from 'antd'
 
-<<<<<<< HEAD
-import { gql } from "apollo-boost";
-import { useQuery } from '@apollo/react-hooks';
-import AddUser from "./components/AddUser"
-import UsersShow from "./components/UsersShow"
-
-import { Layout} from 'antd'
-const { Header, Footer, Sider, Content } = Layout
-=======
 
 import { gql } from "apollo-boost"
 import { useQuery } from '@apollo/react-hooks'
 import UsersShow from "./components/UsersShow"
 import DrawerAddUser from './components/DrawerAddUser'
->>>>>>> ebe8215892ec98dc3c9f03e189189470a1cfadb0
 
 const {Header, Content, Footer } = Layout
 
@@ -38,22 +28,6 @@ function GetUsers() {
   if (error) return <p> {`${error}`}</p>;
 
   return (
-<<<<<<< HEAD
-    <div style={{display: 'flex', flexDirection: 'column', alignContent: 'center', textAlign: 'center'}}>
-      <Layout>
-        <Header>
-          <h2 style={{color: '#fff'}}>Uses Manager</h2>
-        </Header>
-        
-        <Content>
-          <AddUser />
-          <UsersShow data={data.getUsers}/>
-        </Content>
-        
-    </Layout>
-    </div>
-      
-=======
     <Layout>
         <Row >
           <Col span={24} >
@@ -85,7 +59,6 @@ function GetUsers() {
        
 
     </Layout>  
->>>>>>> ebe8215892ec98dc3c9f03e189189470a1cfadb0
   )
 }
 
