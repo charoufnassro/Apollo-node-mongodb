@@ -40,41 +40,6 @@ const columns = [
 ]
 
 const UsersShow = (data) => {
-
-
-      
-      const columns = [
-        {
-          title: 'Id :',
-          dataIndex: 'id',
-          key: 'id',
-        }, {
-        title: 'Name',
-        dataIndex: 'userName',
-        key: 'userName',
-      }, {
-        title: 'Email',
-        dataIndex: 'email',
-        key: 'email',
-      }, {
-        title: 'Sexe',
-        dataIndex: 'sexe',
-        key: 'sexe',
-      },
-      {
-        title: 'Action',
-        key: 'action',
-        render: (text, record) => (
-          <span>
-            <a>Edit {console.log(record.name)}</a>
-            <Divider type="vertical" />
-            <DeleteUser id={record.id} name={record.userName}/>
-          </span>
-        ),
-      }
-    ];
-
-
     return (
         <Table
             style={{padding: '1em 0'}}
